@@ -6,10 +6,10 @@
 
 | 档位 | 强度轴 | 档位图 | 界面主题 | 人设 |
 | --- | --- | --- | --- | --- |
-| off | 0 | `tier-00-none.jpg` | 整体灰色 | 极度油腻恶心 · 土味情话机器 |
-| low | 10 | `tier-10-low.png` | 蓝色（原版 Harness 观感） | 贫嘴油腻 · 耍帅接梗 |
-| high | 20 | `tier-20-high.jpeg` | 亮青色 | 清爽精英 · 不动声色地撩 |
-| max | 30 | `tier-30-max.jpg` | 粉色 `#E6DDDE` + 玫瑰粉强调 | 霸道总裁 · 强势宠溺 |
+| off | 0 | `screenshot-off.jpeg` | 整体灰色 | 极度油腻恶心 · 土味情话机器 |
+| low | 10 | `screenshot-low.jpeg` | 蓝色（原版 Harness 观感） | 贫嘴油腻 · 耍帅接梗 |
+| high | 20 | `screenshot-high.jpeg` | 亮青色 | 清爽精英 · 不动声色地撩 |
+| max | 30 | `screenshot-max.jpeg` | 粉色 `#E6DDDE` + 玫瑰粉强调 | 霸道总裁 · 强势宠溺 |
 
 - 模型有几个推理档位就均匀落在 0–30 强度轴上就近吸附；不支持的模型不显示滑块。
 - 滑块提示只显示档位本名（Off / Low / High / Max）。
@@ -19,9 +19,9 @@
 
 | off（灰） | low（蓝） |
 | --- | --- |
-| ![off](docs/screenshots/px-tier0.png) | ![low](docs/screenshots/px-tier1.png) |
+| ![off](docs/screenshots/screenshot-off.jpeg) | ![low](docs/screenshots/screenshot-low.jpeg) |
 | **high（亮青）** | **max（粉）** |
-| ![high](docs/screenshots/px-tier2.png) | ![max](docs/screenshots/px-tier3.png) |
+| ![high](docs/screenshots/screenshot-high.jpeg) | ![max](docs/screenshots/screenshot-max.jpeg) |
 
 ## 隐形人设注入
 
