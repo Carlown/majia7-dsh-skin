@@ -46,7 +46,7 @@ DeepSeek Harness 的 `systemPrompt.context()` 把对应人设文本注入系统�
 
 ```sh
 cd dsh-liang-skin
-dsh plugin --profile web add ./dsh-client-liang-intensity-skin-<版本>.tgz
+dsh plugin --profile web add ./dsh-client-majia7-skin-<版本>.tgz
 ```
 
 ### 方式二：从本仓库安装（需仓库为 Public）
@@ -72,8 +72,8 @@ dsh plugin --profile web add .
 市场会把本插件重置回 github 上游原版，覆盖掉四档素材与人设。被覆盖后的恢复方式：
 
 ```sh
-dsh plugin --profile web remove dsh-client-liang-intensity-skin
-dsh plugin --profile web add ./dsh-client-liang-intensity-skin-<版本>.tgz
+dsh plugin --profile web remove dsh-client-majia7-skin
+dsh plugin --profile web add ./dsh-client-majia7-skin-<版本>.tgz
 ```
 
 ## 生效与验收
@@ -91,7 +91,7 @@ dsh plugin --profile web add ./dsh-client-liang-intensity-skin-<版本>.tgz
 ## 卸载
 
 ```sh
-dsh plugin --profile web remove dsh-client-liang-intensity-skin
+dsh plugin --profile web remove dsh-client-majia7-skin
 ```
 
 ## 本地开发

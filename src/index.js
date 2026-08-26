@@ -4,7 +4,7 @@ import { parseSingleRange } from "./range.js";
 
 export { parseSingleRange } from "./range.js";
 
-export const PACKAGE_ID = "dsh-client-liang-intensity-skin";
+export const PACKAGE_ID = "dsh-client-majia7-skin";
 export const SETTINGS_NAMESPACE = "liang-intensity-skin";
 export const ASSET_PREFIX = `/plugins/${PACKAGE_ID}/assets/`;
 

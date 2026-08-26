@@ -21,7 +21,7 @@ import {
   type EffortLike,
 } from "./logic";
 
-const PACKAGE_ID = "dsh-client-liang-intensity-skin";
+const PACKAGE_ID = "dsh-client-majia7-skin";
 const LOCALE_NAMESPACE = "liang.skin";
 const ASSET_PREFIX = `/plugins/${PACKAGE_ID}/assets`;
 const FIRST_PORTRAIT_FILE = "tier-v1/tier-00-none.jpg";
