@@ -15,6 +15,14 @@
 - 滑块提示只显示档位本名（Off / Low / High / Max）。
 - 全部按钮（新对话、发送、设置齿轮等）跟随当前档位强调色。
 
+## 截图
+
+| off（灰） | low（蓝） |
+| --- | --- |
+| ![off](docs/screenshots/px-tier0.png) | ![low](docs/screenshots/px-tier1.png) |
+| **high（亮青）** | **max（粉）** |
+| ![high](docs/screenshots/px-tier2.png) | ![max](docs/screenshots/px-tier3.png) |
+
 ## 隐形人设注入
 
 人设不写进用户消息：客户端只把当前档位静默上报到插件自有的 HTTP 接口，服务端通过

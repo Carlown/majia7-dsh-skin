@@ -1,6 +1,6 @@
 import { build } from "esbuild";
 
-const id = "dsh-client-liang-intensity-skin";
+const id = "majia7-skin";
 
 await build({
   entryPoints: ["src/client/index.tsx"],
