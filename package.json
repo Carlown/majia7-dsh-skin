@@ -1,0 +1,57 @@
+{
+  "name": "dsh-client-liang-intensity-skin",
+  "version": "0.3.1",
+  "private": true,
+  "description": "majia7-dsh 四档爆改版：an opt-in adaptive reasoning slider skin for DeepSeek Harness",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kingOfSoySauce/dsh-liang-skin.git"
+  },
+  "homepage": "https://github.com/kingOfSoySauce/dsh-liang-skin#readme",
+  "bugs": "https://github.com/kingOfSoySauce/dsh-liang-skin/issues",
+  "type": "module",
+  "main": "./src/index.js",
+  "exports": {
+    ".": "./src/index.js",
+    "./client": "./lib/client.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "assets/tier-v1/tier-00-none.jpg",
+    "assets/tier-v1/tier-10-low.png",
+    "assets/tier-v1/tier-20-high.jpeg",
+    "assets/tier-v1/tier-30-max.jpg",
+    "cordis.patch.yml",
+    "lib/client.js",
+    "lib/client.js.map",
+    "src/index.js",
+    "src/range.js"
+  ],
+  "scripts": {
+    "build": "node ./scripts/build-client.mjs",
+    "test": "vitest run"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "inject": [
+        "@deepseek-ai/dsh-client-runtime",
+        "@deepseek-ai/dsh-client-ui-conversation",
+        "@deepseek-ai/dsh-client-ui-model-selection",
+        "@deepseek-ai/dsh-client-ui-settings",
+        "@deepseek-ai/dsh-client-ui-theme",
+        "@deepseek-ai/dsh-client-ui-settings-general",
+        "@deepseek-ai/dsh-client-locale",
+        "@deepseek-ai/dsh-api-remotes"
+      ]
+    }
+  },
+  "devDependencies": {
+    "@types/react": "~18.3.1",
+    "esbuild": "^0.25.0",
+    "vitest": "^4.1.10"
+  }
+}

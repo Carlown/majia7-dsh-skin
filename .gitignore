@@ -1,0 +1,23 @@
+node_modules/
+.env
+.env.*
+!.env.example
+.DS_Store
+.idea/
+.vscode/
+*.log
+*.tgz
+coverage/
+test-results/
+
+# Design and review materials are archived in dsh-skin-market-ops;
+# keep them out of the installable GitHub source snapshot.
+/assets/portrait-source-v2/references/
+/assets/portrait-source-v2/GENERATION-BRIEF.md
+/assets/portrait-source-v2/stage-low.png
+/assets/portrait-source-v2/stage-mid.png
+/assets/portrait-source-v2/stage-max.png
+/design-qa-comparison.png
+/design-qa-final.png
+/design-qa.md
+/docs/demo.gif
