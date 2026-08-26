@@ -113,3 +113,7 @@ npm run build   # esbuild 产出 lib/client.js(+map)，随包提交
 
 - 原项目与"滑动变祖"概念：[kingOfSoySauce/dsh-liang-skin](https://github.com/kingOfSoySauce/dsh-liang-skin)
 - 视觉概念来源：[Lichtspektrum/liang-intensity-calibrator](https://github.com/Lichtspektrum/liang-intensity-calibrator)
+
+## 许可证
+
+MIT © Carlown。四张档位图与文档截图为作者自有素材，随本许可证一并发布。
