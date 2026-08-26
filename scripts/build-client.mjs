@@ -1,6 +1,6 @@
 import { build } from "esbuild";
 
-const id = "majia7-skin";
+const id = "dsh-client-majia7-skin";
 
 await build({
   entryPoints: ["src/client/index.tsx"],
