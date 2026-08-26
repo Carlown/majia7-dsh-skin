@@ -1,8 +1,6 @@
 export const PREVIEW_MAX_FRAME = 240;
 export const MAX_LEVEL = 30;
 
-const LIANG_RANKS = ["小难梁", "牢梁", "梁子", "梁圣", "梁神", "梁祖"] as const;
-
 export interface EffortLike {
   id: string;
   name: string;
@@ -112,18 +110,15 @@ export function portraitBlendForLevel(level: number, anchors: readonly number[])
   };
 }
 
-export function liangRankForFrame(rawFrame: number): string {
-  const level = (clampFrame(rawFrame) / PREVIEW_MAX_FRAME) * MAX_LEVEL;
-  const index = level >= MAX_LEVEL ? LIANG_RANKS.length - 1 : Math.floor(level / 6);
-  return LIANG_RANKS[Math.min(LIANG_RANKS.length - 1, Math.max(0, index))];
-}
+const TIER_LABELS = ["Off", "Low", "High", "Max"] as const;
 
 export function indicatorLabel(rawFrame: number, efforts: readonly EffortLike[]): string {
   const effort = efforts[nearestEffortIndex(rawFrame, efforts)];
-  // 只显示档位本名（Off/Low/High/Max…），不再叠加“梁X”前缀。
-  return effort === undefined
-    ? liangRankForFrame(rawFrame)
-    : effort.name;
+  if (effort !== undefined) return effort.name;
+  // 未绑定思考等级时也显示档位本名，不再出现“梁X”系列。
+  const frame = clampFrame(rawFrame);
+  const tier = tierIndexForLevel((frame / PREVIEW_MAX_FRAME) * MAX_LEVEL);
+  return TIER_LABELS[tier];
 }
 
 function lerp(a: number, b: number, amount: number): number {

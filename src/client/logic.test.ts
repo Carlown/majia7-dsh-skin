@@ -2,7 +2,6 @@ import { describe, expect, it } from "vitest";
 import {
   frameForEffort,
   indicatorLabel,
-  liangRankForFrame,
   nearestEffortIndex,
   paletteForFrame,
   portraitBlendForLevel,
@@ -61,13 +60,12 @@ describe("滑动变祖 effort mapping", () => {
     expect(portraitBlendForLevel(31, anchors)).toEqual({ lowerIndex: 7, upperIndex: 7, mix: 0 });
   });
 
-  it("labels only the effort name without the Liang prefix", () => {
-    expect(liangRankForFrame(0)).toBe("小难梁");
-    expect(liangRankForFrame(48)).toBe("牢梁");
-    expect(liangRankForFrame(191)).toBe("梁圣");
-    expect(liangRankForFrame(192)).toBe("梁神");
-    expect(liangRankForFrame(240)).toBe("梁祖");
+  it("labels the effort name, falling back to tier names when unbound", () => {
     expect(indicatorLabel(240, efforts)).toBe("Max");
     expect(indicatorLabel(119, efforts)).toBe("High");
+    expect(indicatorLabel(240, [])).toBe("Max");
+    expect(indicatorLabel(80, [])).toBe("Low");
+    expect(indicatorLabel(0, [])).toBe("Off");
+    expect(indicatorLabel(160, [])).toBe("High");
   });
 });
