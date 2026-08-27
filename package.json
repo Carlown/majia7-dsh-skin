@@ -1,14 +1,14 @@
 {
   "name": "dsh-client-majia7-skin",
-  "version": "0.3.5",
+  "version": "0.3.6",
   "private": true,
-  "description": "majia7-dsh 四档爆改版：an opt-in adaptive reasoning slider skin for DeepSeek Harness",
+  "description": "majia7-skin 四档爆改版：an opt-in adaptive reasoning slider skin for DeepSeek Harness",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kingOfSoySauce/dsh-liang-skin.git"
+    "url": "git+https://github.com/Carlown/majia7-dsh-skin.git"
   },
-  "homepage": "https://github.com/kingOfSoySauce/dsh-liang-skin#readme",
-  "bugs": "https://github.com/kingOfSoySauce/dsh-liang-skin/issues",
+  "homepage": "https://github.com/Carlown/majia7-dsh-skin#readme",
+  "bugs": "https://github.com/Carlown/majia7-dsh-skin/issues",
   "type": "module",
   "main": "./src/index.js",
   "exports": {
@@ -53,5 +53,8 @@
     "@types/react": "~18.3.1",
     "esbuild": "^0.25.0",
     "vitest": "^4.1.10"
+  },
+  "engines": {
+    "dsh": ">=0.1.1-rc.2 <0.2.0"
   }
 }

@@ -49,7 +49,7 @@ cd dsh-liang-skin
 dsh plugin --profile web add ./dsh-client-majia7-skin-<版本>.tgz
 ```
 
-### 方式二：从本仓库安装（需仓库为 Public）
+### 方式二：从本仓库安装（需要仓库为 Public）
 
 ```sh
 dsh plugin --profile web add 'github:Carlown/majia7-dsh-skin'
@@ -66,10 +66,11 @@ dsh plugin --profile web add .
 
 链接依赖模式下改完源码只需 `npm run build` 并重启 DSH 即可生效。
 
-## ⚠️ 皮肤市场用户注意
+## 皮肤市场用户注意
 
-如果你同时安装了皮肤市场（dsh-skin-market）：**不要在市场里对本皮肤点"安装/切换"**——
-市场会把本插件重置回 github 上游原版，覆盖掉四档素材与人设。被覆盖后的恢复方式：
+若你同时安装并启用了皮肤市场（dsh-skin-market）：**在市场里对本皮肤点 "更新" 会把它替换回市场固定 commit 的版本（不再跟随你这份本地版）**。
+日常切到别的皮肤、关掉皮肤都无害；只在主动 "更新" 时才覆盖。
+被覆盖后的恢复方式：
 
 ```sh
 dsh plugin --profile web remove dsh-client-majia7-skin
@@ -93,6 +94,12 @@ dsh plugin --profile web add ./dsh-client-majia7-skin-<版本>.tgz
 ```sh
 dsh plugin --profile web remove dsh-client-majia7-skin
 ```
+
+## 兼容性
+
+- 已验证运行的 DSH Web 版本：**0.1.1-rc.2**（`dsh web` 默认监听 3080）
+- 平台：仅 web
+- 其它 DSH 版本未验证；`package.json` 的 `engines.dsh` 标记期望区间 `>=0.1.1-rc.2 <0.2.0`
 
 ## 本地开发
 
