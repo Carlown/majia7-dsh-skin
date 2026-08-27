@@ -25,7 +25,6 @@ const PACKAGE_ID = "dsh-client-majia7-skin";
 const LOCALE_NAMESPACE = "liang.skin";
 const ASSET_PREFIX = `/plugins/${PACKAGE_ID}/assets`;
 const FIRST_PORTRAIT_FILE = "tier-v1/tier-00-none.jpg";
-const BIND_EFFORT_KEY = "dsh-liang-intensity-skin.bind-effort";
 const BACKDROP_DEPTH_KEY = "dsh-liang-intensity-skin.backdrop-depth";
 const PERSONA_KEY = "dsh-liang-intensity-skin.persona";
 const PERSONA_ROUTE = "/api/plugins/majia7-dsh/persona";
@@ -57,7 +56,6 @@ interface PreferenceStore {
   getSnapshot(): SkinSettings;
   subscribe(listener: () => void): () => void;
   set(enabled: boolean): Promise<void>;
-  setBindEffort(enabled: boolean): Promise<void>;
   setBackdropDepth(depth: number): Promise<void>;
   setPersona(enabled: boolean): Promise<void>;
   dispose(): void;
@@ -591,8 +589,6 @@ function AppearanceSkinRow({ scope, presenter, theme, subscribeTheme, t }: Setti
 const NATIVE_APPEARANCE_GROUP = '[class*="_8HJdBW_group"]';
 const NATIVE_APPEARANCE_ROW = '[class*="_8HJdBW_cubeRow"]';
 const LIANG_APPEARANCE_BUTTON = "liang-appearance-choice";
-const LIANG_BINDING_CONTROL = "liang-appearance-binding";
-const LIANG_BINDING_INPUT = "liang-appearance-binding__input";
 
 function installLiangAppearanceButton(scope: PreferenceStore, presenter: SkinPresenter) {
   let pending = false;
@@ -647,55 +643,7 @@ function installLiangAppearanceButton(scope: PreferenceStore, presenter: SkinPre
       customButton.setAttribute("aria-pressed", String(snapshot.enabled));
     }
 
-    let bindingControl = group.querySelector<HTMLElement>(`.${LIANG_BINDING_CONTROL}`);
-    if (!snapshot.enabled) {
-      bindingControl?.remove();
-      bindingControl = null;
-    } else if (bindingControl === null) {
-      bindingControl = document.createElement("label");
-      bindingControl.className = LIANG_BINDING_CONTROL;
-      bindingControl.dataset.plugin = PACKAGE_ID;
 
-      const bindingCopy = document.createElement("span");
-      bindingCopy.className = "liang-appearance-binding__copy";
-
-      const bindingLabel = document.createElement("span");
-      bindingLabel.className = "liang-appearance-binding__label";
-      const bindingText = document.documentElement.lang.toLowerCase().startsWith("en")
-        ? "Bind 马加七皮肤 slider to reasoning level"
-        : "马加七皮肤 绑定思考等级";
-      bindingLabel.textContent = bindingText;
-
-      const bindingDescription = document.createElement("span");
-      bindingDescription.className = "liang-appearance-binding__description";
-      bindingDescription.id = "liang-appearance-binding-description";
-      bindingDescription.textContent = document.documentElement.lang.toLowerCase().startsWith("en")
-        ? "When off, the slider does not change the reasoning level."
-        : "关闭之后滑块不联动思考等级";
-      bindingCopy.append(bindingLabel, bindingDescription);
-
-      const bindingInput = document.createElement("input");
-      bindingInput.className = LIANG_BINDING_INPUT;
-      bindingInput.type = "checkbox";
-      bindingInput.setAttribute("role", "switch");
-      bindingInput.setAttribute("aria-label", bindingText);
-      bindingInput.setAttribute("aria-describedby", bindingDescription.id);
-      bindingInput.addEventListener("change", () => {
-        void scope.setBindEffort(bindingInput.checked).catch(() => sync());
-      });
-
-      bindingControl.append(bindingCopy, bindingInput);
-      group.append(bindingControl);
-    }
-
-    if (bindingControl !== null) {
-      const bindingInput = bindingControl.querySelector<HTMLInputElement>(`.${LIANG_BINDING_INPUT}`);
-      if (bindingInput !== null) {
-        bindingInput.checked = snapshot.bindEffort;
-        bindingInput.setAttribute("aria-checked", String(snapshot.bindEffort));
-        bindingInput.disabled = pending;
-      }
-    }
 
     // 背景深度调节：0–100% 控制右侧档位图/背景的显示强度，实时生效并持久化。
     let depthControl = group.querySelector<HTMLElement>(".liang-appearance-depth");
@@ -814,7 +762,6 @@ function installLiangAppearanceButton(scope: PreferenceStore, presenter: SkinPre
       nativeButton.removeEventListener("click", handleNativeClick, { capture: true });
     }
     document.querySelectorAll(`.${LIANG_APPEARANCE_BUTTON}`).forEach((button) => button.remove());
-    document.querySelectorAll(`.${LIANG_BINDING_CONTROL}`).forEach((control) => control.remove());
     document.querySelectorAll(".liang-appearance-depth").forEach((control) => control.remove());
     document.querySelectorAll(".liang-appearance-persona").forEach((control) => control.remove());
   };
@@ -870,19 +817,15 @@ function createPreferenceStore(): PreferenceStore {
   }
   let snapshot: SkinSettings = {
     enabled: true,
-    bindEffort: localStorage.getItem(BIND_EFFORT_KEY) !== "0",
+    bindEffort: true,
     backdropDepth: readBackdropDepth(),
     persona: localStorage.getItem(PERSONA_KEY) !== "0",
   };
   const listeners = new Set<() => void>();
   const onStorage = (event: StorageEvent) => {
-    if (event.key !== BIND_EFFORT_KEY && event.key !== BACKDROP_DEPTH_KEY
-      && event.key !== PERSONA_KEY) return;
+    if (event.key !== BACKDROP_DEPTH_KEY && event.key !== PERSONA_KEY) return;
     const next: SkinSettings = {
       enabled: snapshot.enabled,
-      bindEffort: event.key === BIND_EFFORT_KEY
-        ? event.newValue !== "0"
-        : snapshot.bindEffort,
       backdropDepth: event.key === BACKDROP_DEPTH_KEY
         ? readBackdropDepth()
         : snapshot.backdropDepth,
@@ -906,12 +849,6 @@ function createPreferenceStore(): PreferenceStore {
     async set(enabled) {
       if (enabled === snapshot.enabled) return;
       snapshot = { ...snapshot, enabled };
-      for (const listener of listeners) listener();
-    },
-    async setBindEffort(bindEffort) {
-      if (bindEffort === snapshot.bindEffort) return;
-      localStorage.setItem(BIND_EFFORT_KEY, bindEffort ? "1" : "0");
-      snapshot = { ...snapshot, bindEffort };
       for (const listener of listeners) listener();
     },
     async setBackdropDepth(depth) {
